@@ -125,7 +125,10 @@ export default function RoomPage() {
       ) {
         hasLeftRoomRef.current = true;
 
-        socket.emit("leave-room");
+        socket.emit("leave-room", {
+          code,
+          playerId: session.playerId,
+        });
         removeRoomSession(code);
       }
     };
@@ -145,13 +148,16 @@ export default function RoomPage() {
   // }
 
   function leaveRoom(): void {
-    if (!hasLeftRoomRef.current) {
-      hasLeftRoomRef.current = true;
-
-      socket.emit("leave-room");
-      removeRoomSession(code);
+    if (session) {
+      socket.emit("leave-room", {
+        code,
+        playerId: session.playerId,
+      });
+      removeRoomSession(code)
+      router.push("/")
     }
 
+    removeRoomSession(code);
     router.push("/");
   }
 
