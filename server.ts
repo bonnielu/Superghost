@@ -19,7 +19,7 @@ import { MAX_PLAYERS, MAX_STRIKES, TURN_DURATION } from "./lib/game-config";
 import { isWord } from "./lib/game-config"
 
 const dev = process.env.NODE_ENV !== "production";
-const hostname = process.env.HOSTNAME ?? "localhost";
+const hostname = "0.0.0.0";
 const port = Number(process.env.PORT ?? 3000);
 
 const nextApp = next({
